@@ -1,0 +1,16 @@
+FROM ubuntu:22.04
+
+# Instala herramientas necesarias
+RUN apt-get update && apt-get install -y \
+    cifs-utils \
+    coreutils \
+    util-linux \
+    bash \
+    && rm -rf /var/lib/apt/lists/*
+
+# Crea el script de verificación
+COPY startup.sh /startup.sh
+RUN chmod +x /startup.sh
+
+# Ejecuta el script al iniciar
+ENTRYPOINT ["/startup.sh"]

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "📦 Verificando volumen montado en /mnt/azurefiles..."
+
+if mountpoint -q /mnt/azurefiles; then
+    echo "✅ Volumen montado correctamente." | tee /mnt/azurefiles/montaje.log
+    ls -l /mnt/azurefiles | tee -a /mnt/azurefiles/montaje.log
+else
+    echo "❌ Volumen NO está montado." | tee /mnt/azurefiles/montaje.log
+fi
+
+# Mantiene el contenedor activo para inspección
+sleep infinity
