@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  odoo:
+    build: ./docker
+    container_name: odoo
+    volumes:
+      - azurefiles:/var/log/odoo/
+    # Puedes agregar más configuraciones aquí, como puertos, variables de entorno, etc.
+
+volumes:
+  azurefiles:
+    driver: azurefile
+    driver_opts:
+      share_name: <nombre_del_share>
+      storage_account_name: <nombre_de_la_cuenta>
+      storage_account_key: <clave_de_la_cuenta>
